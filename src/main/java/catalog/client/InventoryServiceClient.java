@@ -14,5 +14,4 @@ public interface InventoryServiceClient {
 
 	@RequestMapping(method=RequestMethod.GET, value="/micro/check")
 	void healthCheck();
-
 }

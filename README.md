@@ -1,8 +1,8 @@
 # refarch-cloudnative-micro-catalog: Spring Boot Microservice with Elasticsearch Database
-[![Build Status](https://travis-ci.org/ibm-cloud-architecture/refarch-cloudnative-micro-catalog.svg?branch=master)](https://travis-ci.org/ibm-cloud-architecture/refarch-cloudnative-micro-catalog)
+[![Build Status](https://travis-ci.org/fabiogomezdiaz/refarch-cloudnative-micro-catalog.svg?branch=master)](https://travis-ci.org/fabiogomezdiaz/refarch-cloudnative-micro-catalog)
 
 *This project is part of the 'IBM Cloud Native Reference Architecture' suite, available at
-https://github.com/ibm-cloud-architecture/refarch-cloudnative-kubernetes/tree/spring*
+https://github.com/fabiogomezdiaz/refarch-cloudnative-kubernetes/tree/master*
 
 ## Table of Contents
 * [Introduction](#introduction)
@@ -43,14 +43,14 @@ Here is an overview of the project's features:
     + `http://localhost:8081/micro/items/${itemId}`
 
 ## Pre-requisites:
-* Create a Kubernetes Cluster by following the steps [here](https://github.com/ibm-cloud-architecture/refarch-cloudnative-kubernetes#create-a-kubernetes-cluster).
+* Create a Kubernetes Cluster by following the steps [here](https://github.com/fabiogomezdiaz/refarch-cloudnative-kubernetes#create-a-kubernetes-cluster).
 * Install the following CLI's on your laptop/workstation:
     + [`docker`](https://docs.docker.com/install/)
     + [`kubectl`](https://kubernetes.io/docs/tasks/tools/install-kubectl/)
     + [`helm`](https://docs.helm.sh/using_helm/#installing-helm)
 * Clone catalog repository:
 ```bash
-git clone -b spring --single-branch https://github.com/ibm-cloud-architecture/refarch-cloudnative-micro-catalog.git
+git clone -b spring --single-branch https://github.com/fabiogomezdiaz/refarch-cloudnative-micro-catalog.git
 cd refarch-cloudnative-micro-catalog
 ```
 
@@ -58,7 +58,7 @@ cd refarch-cloudnative-micro-catalog
 In this section, we are going to deploy the Catalog Application, along with a MySQL service, to a Kubernetes cluster using Helm. To do so, follow the instructions below:
 ```bash
 # Add helm repos for Inventory and Elasticsearch Chart
-helm repo add ibmcase-charts https://raw.githubusercontent.com/ibm-cloud-architecture/refarch-cloudnative-kubernetes/spring/docs/charts
+helm repo add ibmcase https://raw.githubusercontent.com/fabiogomezdiaz/refarch-cloudnative-kubernetes/master/docs/charts
 
 # Install Elasticsearch Chart
 helm upgrade --install elasticsearch \
@@ -84,7 +84,7 @@ helm upgrade --install mysql \
   stable/mysql
 
 # Install Inventory Chart
-helm upgrade --install inventory --set mysql.existingSecret=inventory-mysql ibmcase-charts/inventory
+helm upgrade --install inventory --set mysql.existingSecret=inventory-mysql ibmcase/inventory
 
 # Go to Chart Directory
 cd chart/catalog
@@ -135,7 +135,7 @@ Make sure to select the IP Address in the `IPAddress` field. You will use this I
 In order for Inventory to make use of the MySQL database, the database needs to be populated first. To do so, run the following commands:
 ```bash
 # Download MySQL static data script
-wget https://raw.githubusercontent.com/ibm-cloud-architecture/refarch-cloudnative-micro-inventory/master/scripts/mysql_data.sql
+wget https://raw.githubusercontent.com/fabiogomezdiaz/refarch-cloudnative-micro-inventory/master/scripts/mysql_data.sql
 # Populate MySQL
 until mysql -h 127.0.0.1 -P 3306 -udbuser -ppassword <mysql_data.sql; do echo "waiting for mysql"; sleep 1; done; echo "Loaded data into database"
 ```
@@ -153,7 +153,7 @@ docker run --name inventory \
     -e MYSQL_PASSWORD=password \
     -e MYSQL_DATABASE=inventorydb \
     -p 8080:8080 \
-    -d ibmcase/bluecompute-inventory:0.5.0
+    -d fabiogomezdiaz/bluecompute-inventory:0.5.0
 ```
 
 Where `${MYSQL_IP_ADDRESS}` is the IP address of the MySQL container, which is only accessible from the Docker container network.
@@ -259,16 +259,16 @@ The Spring Boot applications can be deployed on WebSphere Liberty as well. In th
 If you would like to setup an automated Jenkins CI/CD Pipeline for this repository, we provided a sample [Jenkinsfile](Jenkinsfile), which uses the [Jenkins Pipeline](https://jenkins.io/doc/book/pipeline/) syntax of the [Jenkins Kubernetes Plugin](https://github.com/jenkinsci/kubernetes-plugin) to automatically create and run Jenkis Pipelines from your Kubernetes environment.
 
 To learn how to use this sample pipeline, follow the guide below and enter the corresponding values for your environment and for this repository:
-* https://github.com/ibm-cloud-architecture/refarch-cloudnative-devops-kubernetes
+* https://github.com/fabiogomezdiaz/refarch-cloudnative-devops-kubernetes
 
 ## Conclusion
 You have successfully deployed and tested the Catalog and Inventory Microservices with their respective Elasticsearch and MySQL databases both on a Kubernetes Cluster and in local Docker Containers.
 
-To see the Catalog app working in a more complex microservices use case, checkout our Microservice Reference Architecture Application [here](https://github.com/ibm-cloud-architecture/refarch-cloudnative-kubernetes/tree/spring).
+To see the Catalog app working in a more complex microservices use case, checkout our Microservice Reference Architecture Application [here](https://github.com/fabiogomezdiaz/refarch-cloudnative-kubernetes/tree/master).
 
 ## Contributing
 If you would like to contribute to this repository, please fork it, submit a PR, and assign as reviewers any of the GitHub users listed here:
-* https://github.com/ibm-cloud-architecture/refarch-cloudnative-micro-catalog/graphs/contributors
+* https://github.com/fabiogomezdiaz/refarch-cloudnative-micro-catalog/graphs/contributors
 
 ### GOTCHAs
 1. We use [Travis CI](https://travis-ci.org/) for our CI/CD needs, so when you open a Pull Request you will trigger a build in Travis CI, which needs to pass before we consider merging the PR. We use Travis CI to test the following:
@@ -287,5 +287,5 @@ If you would like to contribute to this repository, please fork it, submit a PR,
     * https://github.com/helm/charts/tree/master/stable/mysql
 
 ### Contributing a New Chart Package to Microservices Reference Architecture Helm Repository
-To contribute a new chart version to the [Microservices Reference Architecture](https://github.com/ibm-cloud-architecture/refarch-cloudnative-kubernetes/tree/spring) helm repository, follow its guide here:
-* https://github.com/ibm-cloud-architecture/refarch-cloudnative-kubernetes/tree/spring#contributing-a-new-chart-to-the-helm-repositories
+To contribute a new chart version to the [Microservices Reference Architecture](https://github.com/fabiogomezdiaz/refarch-cloudnative-kubernetes/tree/master) helm repository, follow its guide here:
+* https://github.com/fabiogomezdiaz/refarch-cloudnative-kubernetes/tree/master#contributing-a-new-chart-to-the-helm-repositories

@@ -3,7 +3,7 @@
 ## Introduction
 This chart will deploy a Spring Boot Application with a Elasticsearch database onto a Kubernetes Cluster. It will also deploy the Inventory Application along with its MySQL database.
 
-![Application Architecture](https://raw.githubusercontent.com/ibm-cloud-architecture/refarch-cloudnative-micro-catalog/spring/static/catalog.png?raw=true)
+![Application Architecture](https://raw.githubusercontent.com/fabiogomezdiaz/refarch-cloudnative-micro-catalog/master/static/catalog.png?raw=true)
 
 Here is an overview of the chart's features:
 - Leverage [`Spring Boot`](https://projects.spring.io/spring-boot/) framework to build a Microservices application.
@@ -15,13 +15,13 @@ Here is an overview of the chart's features:
 
 ## Chart Source
 The source for the `Catalog` chart can be found at:
-* https://github.com/ibm-cloud-architecture/refarch-cloudnative-micro-catalog/tree/spring/chart/catalog
+* https://github.com/fabiogomezdiaz/refarch-cloudnative-micro-catalog/tree/master/chart/catalog
 
 The source for the `Elasticsearch` chart can be found at:
 * https://github.com/helm/charts/tree/master/incubator/elasticsearch
 
 The source for the `Inventory` chart can be found at:
-* https://github.com/ibm-cloud-architecture/refarch-cloudnative-micro-inventory/tree/spring/chart/inventory
+* https://github.com/fabiogomezdiaz/refarch-cloudnative-micro-inventory/tree/master/chart/inventory
 
 The source for the `MySQL` chart can be found at:
 * https://github.com/helm/charts/tree/master/stable/mysql
@@ -39,7 +39,7 @@ Lastly, the source for the `alexeiled/curl` Docker Image can be found at:
 To deploy the Catalog Chart and its Elasticsearch dependency Chart to a Kubernetes cluster using Helm CLI, follow the instructions below:
 ```bash
 # Add helm repos for Inventory and Elasticsearch Chart
-helm repo add ibmcase-charts https://raw.githubusercontent.com/ibm-cloud-architecture/refarch-cloudnative-kubernetes/spring/docs/charts
+helm repo add ibmcase https://raw.githubusercontent.com/fabiogomezdiaz/refarch-cloudnative-kubernetes/master/docs/charts
 
 # Install Elasticsearch Chart
 helm upgrade --install elasticsearch \
@@ -65,10 +65,10 @@ helm upgrade --install mysql \
   stable/mysql
 
 # Install Inventory Chart
-helm upgrade --install inventory --set mysql.existingSecret=inventory-mysql ibmcase-charts/inventory
+helm upgrade --install inventory --set mysql.existingSecret=inventory-mysql ibmcase/inventory
 
 # Clone catalog repository:
-git clone -b spring --single-branch https://github.com/ibm-cloud-architecture/refarch-cloudnative-micro-catalog.git
+git clone -b spring --single-branch https://github.com/fabiogomezdiaz/refarch-cloudnative-micro-catalog.git
 
 # Go to Chart Directory
 cd refarch-cloudnative-micro-catalog/chart/catalog

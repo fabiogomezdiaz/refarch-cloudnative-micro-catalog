@@ -5,7 +5,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
 
 import okhttp3.Credentials;
 import okhttp3.OkHttpClient;
@@ -45,7 +44,6 @@ public class ItemService {
     }
 
     // Get all rows from database
-    @HystrixCommand(fallbackMethod = "failGood")
     public List<Item> findAll() throws JSONException {
         List<Item> list;
         final String req_url = url + "/" + index + "/" + doc_type + "/_search";

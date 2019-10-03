@@ -1,7 +1,7 @@
 replicaCount: 1
 
 image:
-  repository: ibmcase/bluecompute-catalog
+  repository: fabiogomezdiaz/bluecompute-catalog
   tag: 0.6.0
   pullPolicy: Always
 

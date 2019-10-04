@@ -68,7 +68,7 @@ helm upgrade --install mysql \
 helm upgrade --install inventory --set mysql.existingSecret=inventory-mysql ibmcase/inventory
 
 # Clone catalog repository:
-git clone -b spring --single-branch https://github.com/fabiogomezdiaz/refarch-cloudnative-micro-catalog.git
+git clone https://github.com/fabiogomezdiaz/refarch-cloudnative-micro-catalog.git
 
 # Go to Chart Directory
 cd refarch-cloudnative-micro-catalog/chart/catalog

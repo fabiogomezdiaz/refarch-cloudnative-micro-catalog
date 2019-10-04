@@ -50,7 +50,7 @@ Here is an overview of the project's features:
     + [`helm`](https://docs.helm.sh/using_helm/#installing-helm)
 * Clone catalog repository:
 ```bash
-git clone -b spring --single-branch https://github.com/fabiogomezdiaz/refarch-cloudnative-micro-catalog.git
+git clone https://github.com/fabiogomezdiaz/refarch-cloudnative-micro-catalog.git
 cd refarch-cloudnative-micro-catalog
 ```
 

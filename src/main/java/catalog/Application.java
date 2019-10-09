@@ -10,7 +10,6 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration;
 import org.springframework.boot.autoconfigure.orm.jpa.HibernateJpaAutoConfiguration;
 import org.springframework.cloud.netflix.feign.EnableFeignClients;
-import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Bean;
 import org.springframework.core.task.SimpleAsyncTaskExecutor;
 import org.springframework.core.task.TaskExecutor;
@@ -26,8 +25,7 @@ public class Application {
 	private InventoryRefreshTask refreshTask;
 	
     public static void main(String[] args) {
-        final ApplicationContext ctx = SpringApplication.run(Application.class, args);
-        
+        SpringApplication.run(Application.class, args);
         logger.info("Catalog microservice is ready for business...");
     }
     
